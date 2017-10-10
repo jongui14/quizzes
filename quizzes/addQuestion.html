@@ -1,0 +1,142 @@
+<!DOCTYPE>
+<html>
+  <head>
+        <meta charset="utf-8">
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function(){			
+			$("#galderaSartu").submit(function(e){
+				$("#epostaOker").text('');
+				$("#galderaOker").text('');
+				$("#erantzun1Oker").text('');
+				$("#erantzun2Oker").text('');
+				$("#erantzun3Oker").text('');
+				$("#zailtasunaOker").text('');
+				$("#arloaOker").text('');
+			
+				var eposta = $("#eposta").val();
+				var galdera = $("#galdera").val();
+				var erantzun1 = $("#erantzun1").val();
+				var erantzun2 = $("#erantzun2").val();
+				var erantzun3 = $("#erantzun3").val();
+				var zailtasuna = $("#zailtasuna").val();
+				var arloa = $("#arloa").val();		
+								
+				var egoki=true;
+
+				if (!(eposta.match(/^[a-zA-Z]+[0-9]{3}@ikasle.ehu.eu?s$/))) {
+					egoki=false;
+					$("#epostaOker").text('Posta elektroniko okerra!');
+				}
+				
+				if(galdera.length<10){
+					egoki=false;
+					$("#galderaOker").text('Galderak gutxienez 10 karaktere eduki behar ditu!');
+				}
+				
+				if(erantzun1==""){
+					egoki=false;
+					$("#erantzun1Oker").text('Hau ezin da hutsik egon!');
+				}
+				
+				if(erantzun2==""){
+					egoki=false;
+					$("#erantzun2Oker").text('Hau ezin da hutsik egon!');
+				}
+				
+				if(erantzun3==""){
+					egoki=false;
+					$("#erantzun3Oker").text('Hau ezin da hutsik egon!');
+				}
+				
+				if(!(zailtasuna.match(/^[1-5]$/))){
+					egoki=false;
+					$("#zailtasunaOker").text('Zailtasuna 1-5 zenbakien artekoa izan behar da');
+				}
+				
+				if(arloa==""){
+					egoki=false;
+					$("#arloaOker").text('Hau ezin da hutsik egon!');
+				}
+				
+				
+				if(egoki){
+					$("form").validationEngine();
+				}else{
+					e.preventDefault(e);
+					alert("Birpasatu sartu dituzun datuak!");
+				}
+				
+			});
+			
+			$('#igoIrudia').on('change', function(ev) {
+				var f = ev.target.files[0];
+				var fr = new FileReader();
+				
+				fr.onload = function(ev2) {
+					console.dir(ev2);
+					$('#irudiaPantallan').attr('src', ev2.target.result);
+				};
+				
+				fr.readAsDataURL(f);
+			});
+			
+			
+		});
+		</script>
+		
+       <title>Galdera Gehitu</title>
+	<link rel='stylesheet' type='text/css' href='../stylesPWS/styleLab2.css' />
+
+
+
+  </head>
+ <body><a href="../layout.html"> <img src="../img/atras.png" id="atzeraArgazkia" style="width: 40px;height: 40px;position: relative; top: 10px; left: 30px;"></a>
+
+	<div id="guztia">
+	<h2>GALDERA GEHITU</h2>  	
+	<div id="galdetegia">
+	<form id="galderaSartu" name="galderaSartu" action="../proba.php">
+
+	<br>Egilearen posta:
+	<input type="text" name="eposta" id="eposta" placeholder="xxx001@ikasle.ehu.eus">
+	<span id="epostaOker"></span><br><br>
+	
+	Galdera:<textarea name="galdera" id="galdera">
+	</textarea><span id="galderaOker"></span><br><br>
+	
+	Erantzun zuzena:
+	<input type="text" name="erantzun1" id="erantzun1">
+	<span id="erantzun1Oker"></span><br><br>
+	
+	Erantzun okerra:
+	<input type="text" name="erantzun2" id="erantzun2">
+	<span id="erantzun2Oker"></span><br><br>
+	
+	Erantzun okerra:
+	<input type="text" name="erantzun3" id="erantzun3">
+	<span id="erantzun3Oker"></span><br><br>
+
+	Galderaren zailtasuna (1-5): 
+	<input type="text" name="zailtasuna" id="zailtasuna">
+	<span id="zailtasunaOker"></span><br><br>
+	
+	Galderaren gai-arloa: 
+	<input type="text" name="arloa" id="arloa">
+	<span id="arloaOker"></span><br><br>
+	
+	Gehitu irudia:
+	<input id="igoIrudia" type="file" accept="image/*" >
+	<span id="argazkiaOker"></span><br><br>
+	
+	<img id="irudiaPantallan" /><br>
+	
+	<input id="boton1" class="botoia" type="submit" value="Galdera bidali">
+	<input id="boton2" class="botoia" type="reset" value="Garbitu">
+	
+	</form>
+	</div>
+	</div>
+	
+	</body>
+</html>
