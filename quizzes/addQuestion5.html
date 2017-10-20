@@ -6,6 +6,17 @@
 		<script>
 		$(document).ready(function(){
 			
+			$("input[type='reset']").on("click", function(event){
+				$('#irudiaPantallan').attr('src', "undefined");
+
+			});
+			$("input[type='submit']").on("click", function(event){
+				alert("a");
+				if(typeof ($('#irudiaPantallan').attr('src')) != "undefined"){
+					$('#galderaSartu').attr('action', '../php/addQuestionwithImage.php');
+				}
+			});
+			
 			$('#igoIrudia').on('change', function(ev) {
 				var f = ev.target.files[0];
 				var fr = new FileReader();
@@ -32,7 +43,7 @@
   	<div id="guztia">
 	<h2>GALDERA GEHITU - HTML5</h2>
 	<div id="galdetegia">
-  	<form id="galderaSartu" name="galderaSartu" method="post" action="../php/addQuestion.php">
+  	<form id="galderaSartu" name="galderaSartu" method="post" action="../php/addQuestion.php" enctype="multipart/form-data">
 	
 	<font face="arial" align="left" >Egilearen eposta: </font><input type="email" name="eposta" id="eposta" placeholder="xxx001@ikasle.ehu.eus" pattern="[a-zA-Z]+[0-9]{3}@ikasle.ehu.eu?s" required><br><br>
 	

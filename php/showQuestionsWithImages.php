@@ -2,12 +2,13 @@
 
 include 'configEzarri.php';
 
-$ema=$niremysqli->query("select * from questionsirudigabe");
+$ema=$niremysqli->query("select * from questions");
 
 echo '<table border=1><tr><th>ID</th><th>EPOSTA</th><th>GALDERA</th>
-<th>ZUZENA</th><th>OKERRA1</th><th>OKERRA2</th><th>OKERRA3</th><th>ZAILTASUNA</th><th>ARLOA</th> </tr>';
+<th>ZUZENA</th><th>OKERRA1</th><th>OKERRA2</th><th>OKERRA3</th><th>ZAILTASUNA</th><th>ARLOA</th><th>IRUDIA</th>  </tr>';
 
 while($row=$ema->fetch_object() ){
+	
 	echo '<tr>'
 	.'<td>'.$row->id.'</td>'
 	.'<td>'.$row->eposta.'</td>'
@@ -18,6 +19,7 @@ while($row=$ema->fetch_object() ){
 	.'<td>'.$row->okerra3.'</td>'
 	.'<td>'.$row->zailtasuna.'</td>'
 	.'<td>'.$row->arloa.'</td>'
+	.'<td>'.'<img src="data:image/jpeg;base64,'.base64_encode( $row->irudia ).'"/>'.'</td>'
 	.'</tr>';
 }
 
