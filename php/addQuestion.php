@@ -2,8 +2,8 @@
 
 include 'configEzarri.php';
 
-$sql = "INSERT INTO questionsirudigabe(eposta,galdera,zuzena,okerra1,okerra2,okerra3,zailtasuna,arloa)
-		VALUES('$_POST[eposta]','$_POST[galdera]','$_POST[erantzun1]','$_POST[erantzun2]','$_POST[erantzun3]','$_POST[erantzun4]','$_POST[zailtasuna]','$_POST[arloa]')";
+$sql = "INSERT INTO questions(eposta,galdera,zuzena,okerra1,okerra2,okerra3,zailtasuna,arloa,irudia)
+		VALUES('$_POST[eposta]','$_POST[galdera]','$_POST[erantzun1]','$_POST[erantzun2]','$_POST[erantzun3]','$_POST[erantzun4]','$_POST[zailtasuna]','$_POST[arloa]','0')";
 
 		
 if(!$niremysqli->query($sql)){

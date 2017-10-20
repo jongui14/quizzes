@@ -18,9 +18,16 @@ while($row=$ema->fetch_object() ){
 	.'<td>'.$row->okerra2.'</td>'
 	.'<td>'.$row->okerra3.'</td>'
 	.'<td>'.$row->zailtasuna.'</td>'
-	.'<td>'.$row->arloa.'</td>'
-	.'<td>'.'<img src="data:image/jpeg;base64,'.base64_encode( $row->irudia ).'"/>'.'</td>'
-	.'</tr>';
+	.'<td>'.$row->arloa.'</td>';
+	//echo '<td>'.$row->irudia.'</td>'.'</tr>';
+	$hutsa=$row->irudia;
+	if( $hutsa == '0'){
+		echo '<td>'.'<img src="../img/hutsaGaldera.jpg" style="width:100px;height:100px;" />'.'</td>'
+		.'</tr>';
+	}else{
+		echo '<td>'.'<img src="data:image/jpeg;base64,'.base64_encode( $row->irudia ).'" style="width:100px;height:100px;" "/>'.'</td>'
+		.'</tr>';
+	}
 }
 
 echo '</table>';

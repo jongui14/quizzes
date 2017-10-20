@@ -2,7 +2,7 @@
 
 include 'configEzarri.php';
 
-$ema=$niremysqli->query("select * from questionsirudigabe");
+$ema=$niremysqli->query("select * from questions");
 
 echo '<table border=1><tr><th>ID</th><th>EPOSTA</th><th>GALDERA</th>
 <th>ZUZENA</th><th>OKERRA1</th><th>OKERRA2</th><th>OKERRA3</th><th>ZAILTASUNA</th><th>ARLOA</th> </tr>';
