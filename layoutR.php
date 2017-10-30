@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
@@ -16,15 +16,18 @@
   <body>
   <div id='page-wrap'>
 	<header class='main' id='h1'>
-      <span class="right"><a href="./php/logIn.php">LogIn</a> </span>
-	  <span class="right"><a href="./php/signUp.php">SingUp</a> </span>
-      <span class="right" style="display:none;"><a href="/logout">LogOut</a> </span>
+      <!--<span class="right"><a href="./php/logIn.php">LogIn</a> </span>-->
+	  <!--<span class="right"><a href="./php/signUp.php">SingUp</a> </span>-->
+      <span class="right" ><a href="layout.html" onmouseDown="alert('Saioa itxi duzu.')">LogOut</a> </span>
 	<h2>Quiz: crazy questions</h2>
     </header>
 	<nav class='main' id='n1' role='navigation'>
-		<span><a href='layout.html'>Home</a></span>
-		<!--<span><a href='quizzes/addQuestion5.html'>Quizzes HTML5</a></span>-->
-		<span><a href='author/credits.html'>Credits</a></span>
+	
+		<span><a href='layoutR.php?eposta=<?php echo($_GET["eposta"]); ?>'>Home</a></span>
+		<span><a href='php/addQuestion.php?eposta=<?php echo($_GET["eposta"]); ?>'>Add quiz</a></span>
+		<span><a href='php/erakutsiGalderak.php?eposta=<?php echo($_GET["eposta"]); ?>'>Erakutsi galderak</a></span>
+		<span><a href='php/showQuestionsWithImages.php?eposta=<?php echo($_GET["eposta"]); ?>'>Erakutsi galderak irudiekin</a></span>
+		<span><a href='author/credits.php?eposta=<?php echo($_GET["eposta"]); ?>'>Credits</a></span>
 	</nav>
     <section class="main" id="s1">
     

@@ -1,6 +1,6 @@
 <?php
 
-	$lokal=1;
+	$lokal=0;
 	
 	if($lokal==0){
 			
@@ -13,7 +13,6 @@
 			
 		}
 		
-		echo "Konexioa egin da:" . $niremysqli->host_info;
 		
 	}else{
 					
@@ -25,9 +24,7 @@
 			$niremysqli-> connect_error );
 			
 		}
-		
-		echo "Konexioa egin da:" . $niremysqli->host_info;
-		
+				
 	}
 
 		

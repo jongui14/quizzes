@@ -1,4 +1,28 @@
+<html>
+<head></head>
+<body>
+<div align="right">
+	<img src="
+	<?php
+	include 'configEzarri.php';
+	$erab=$_GET["eposta"];
+	$ema=$niremysqli->query("select * from users where eposta='$erab'");
+	$row=$ema->fetch_object();
+	$hutsa=$row->argazkia;
+	if( $hutsa == '0'){
+		echo '../img/hutsaGaldera.png';
+	}else{
+		echo 'data:image/jpeg;base64,'.base64_encode( $row->argazkia );
+	}
+	?>" id="profilekoArgazkia" style="width: 40px;height: 40px;position: relative;">
+	<br><?php echo($_GET["eposta"]); ?>
+	</div>
+</body>
+</html>
 <?php
+
+echo '<a href="../layoutR.php?eposta='.$_GET['eposta'].'"> <img src="../img/atras.png" id="atzeraArgazkia" style="width: 40px;height: 40px;"></a><br>';
+
 
 include 'configEzarri.php';
 
@@ -22,6 +46,9 @@ while($row=$ema->fetch_object() ){
 }
 
 echo '</table>';
+
+echo "Gehitu galdera gehiago : ";
+echo '<a href="../php/addQuestion.php?eposta='.$_GET['eposta'].'">Hemen.</a><br><br>';
 
 $ema->close();
 $niremysqli->close();
