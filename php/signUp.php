@@ -95,7 +95,7 @@ if(isset($_POST['eposta'])){
 	}
 	echo "Erabiltzaile bat gehitu da!";
 	echo "<p><a href='../layout.html'>Hasiera</a>";
-	echo "<p><a href='../php/singUp.html'>Beste erabiltzaile bat gehitu</a>";
+	echo "<p><a href='../php/singUp.php'>Beste erabiltzaile bat gehitu</a>";
 
 	$niremysqli->close();	
 }
