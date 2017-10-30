@@ -44,18 +44,19 @@ if(isset($_POST['eposta'])){
 
 	$ema=$niremysqli->query("select * from users where eposta='$erab'");
 	
-	try{
 	$lortutakoa=$row=$ema->fetch_object();
 
-	if($pass == $lortutakoa->pasahitza){
-		echo "<script>alert('Aurrera!');</script>";
-		header("refresh:0; ../layoutR.php?eposta=".$erab);
+	if($lortutakoa==null){
+		echo 'Oker';
 	}else{
-		echo 'Oker';
+		if($pass == $lortutakoa->pasahitza){
+			echo "<script>alert('Aurrera!');</script>";
+			header("refresh:0; ../layoutR.php?eposta=".$erab);
+		}else{
+			echo 'Oker';
+		}
 	}
-	}catch (Exception $e) {
-		echo 'Oker';
-	}
+
 	
 
 
