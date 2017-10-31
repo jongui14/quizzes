@@ -2,13 +2,6 @@
 <html>
   <head>
         <meta charset="utf-8">
-		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-		<script>
-		$(document).ready(function(){
-
-		});
-		</script>
-
     <title>Galdera Gehitu</title>
 	<link rel='stylesheet' type='text/css' href='../stylesPWS/styleLab2.css' />
 
@@ -50,8 +43,9 @@ if(isset($_POST['eposta'])){
 		echo 'Oker';
 	}else{
 		if($pass == $lortutakoa->pasahitza){
-			echo "<script>alert('Aurrera!');</script>";
-			header("refresh:0; ../layoutR.php?eposta=".$erab);
+			echo '<script language="javascript" type="text/javascript">alert("Aurrera!"); location.href="../layoutR.php?eposta='.$erab.'"</script>';
+			//echo "<script>alert('Aurrera!');</script>";
+			//header('Location: ../layoutR.php?eposta='.$erab);
 		}else{
 			echo 'Oker';
 		}
