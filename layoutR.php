@@ -18,7 +18,7 @@
 	<header class='main' id='h1'>
       <!--<span class="right"><a href="./php/logIn.php">LogIn</a> </span>-->
 	  <!--<span class="right"><a href="./php/signUp.php">SingUp</a> </span>-->
-      <span class="right" ><a href="layout.html" onmouseDown="alert('Saioa itxi duzu.')">LogOut</a> </span>
+      <span class="right" ><a href="layout.html" onClick="alert('Saioa itxi duzu.')">LogOut</a> </span>
 	<h2>Quiz: crazy questions</h2>
     </header>
 	<nav class='main' id='n1' role='navigation'>
