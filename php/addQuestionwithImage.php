@@ -61,13 +61,11 @@ if(!$niremysqli->query($sql)){
 	echo "Errorea gertatu da!";
 	echo "<a href='../quizzes/addQuestion5.html'>Galdera berria egin.</a>";
 }
-echo "Erregistro bat gehitu da!";
-echo "<p><a href='showQuestionsWithImages.php'>Erregistroak ikusi</a>";
 
 
 $niremysqli->close();
 
-echo '<script language="javascript" type="text/javascript"> location.href="addQuestion.php?eposta='.$eposta.'"</script>';
+echo '<script language="javascript" type="text/javascript"> location.href="afterQuestion.php?eposta='.$eposta.'"</script>';
 
 
 ?>

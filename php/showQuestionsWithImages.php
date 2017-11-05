@@ -23,6 +23,8 @@
 
 include 'configEzarri.php';
 
+//echo '<a href="../afterQuestion.php?eposta='.$_GET['eposta'].'"> <img src="../img/atras.png" id="atzeraArgazkia" style="width: 40px;height: 40px;"></a>';
+//echo '<a href="../layoutR.php?eposta='.$_GET['eposta'].'"> <img src="../img/home.png" id="home" style="width: 40px;height: 40px;"></a><br>';
 echo '<a href="../layoutR.php?eposta='.$_GET['eposta'].'"> <img src="../img/atras.png" id="atzeraArgazkia" style="width: 40px;height: 40px;"></a><br>';
 
 $ema=$niremysqli->query("select * from questions");

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<assessmentItems>
+	<assessmentItem complexity="3" subject="mikologia">
+		<itemBody> 
+			<p>Zein Amanita da jangarria?</p>
+		</itemBody>
+		<correctResponse>
+			<value>Caesarea</value>
+		</correctResponse>
+		<incorrectResponses>
+			<value>Phalloides</value>
+			<value>Muscaria</value>
+			<value>Virosa</value>
+		</incorrectResponses>
+	</assessmentItem>
+	<assessmentItem complexity="3" subject="mikologia">
+		<itemBody> 
+			<p>Tripakiek zer dute kapela azpian?</p>
+		</itemBody>
+		<correctResponse>
+			<value>Eztenak</value>
+		</correctResponse>
+		<incorrectResponses>
+			<value>Filamenduak</value>
+			<value>Himenioa</value>
+			<value>Hodiak</value>
+		</incorrectResponses>
+	</assessmentItem>
+	<assessmentItem complexity="5" subject="mikologia">
+		<itemBody>
+			<p>Eranztuna du</p>
+		</itemBody>
+		<correctResponse>
+			<value>Galanpernak</value>
+		</correctResponse>
+		<incorrectResponses>
+			<value>Gibel urdinak</value>
+			<value>Esnegorriak</value>
+			<value>Errotariak</value>
+		</incorrectResponses>
+	</assessmentItem>
+<assessmentItem complexity="1" subject="Proba"><itemBody><p>Probako galdera bat.</p></itemBody><correctResponse><value>Erantzun zuzena</value></correctResponse><incorrectResponses><value>Erantzun okerra 1</value><value>Erantzun okerra 2</value><value>Erantzun okerra 3</value></incorrectResponses></assessmentItem><assessmentItem complexity="4" subject="skskos"><itemBody><p>dkokkdosksos</p></itemBody><correctResponse><value>oksk</value></correctResponse><incorrectResponses><value>sss</value><value>sk</value><value>oo</value></incorrectResponses></assessmentItem><assessmentItem complexity="3" subject="k"><itemBody><p>koksoksoksoksok</p></itemBody><correctResponse><value>Erantzun zuzena</value></correctResponse><incorrectResponses><value>osksoos</value><value>Erantzun okerra 2</value><value>oks</value></incorrectResponses></assessmentItem></assessmentItems>

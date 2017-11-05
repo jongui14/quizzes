@@ -61,7 +61,7 @@
 	<div id="galdetegia">
   	<form id="galderaSartu" name="galderaSartu" method="post" action="addQuestion.php" enctype="multipart/form-data">
 	
-	<font face="arial" align="left" >Egilearen eposta: </font><input type="email" name="eposta" id="eposta" placeholder="xxx001@ikasle.ehu.eus" value="<?php echo($_GET["eposta"]); ?>" pattern="[a-zA-Z]+[0-9]{3}@ikasle.ehu.eu?s" required><br><br>
+	<input type="email" name="eposta" id="eposta" placeholder="xxx001@ikasle.ehu.eus" value="<?php echo($_GET["eposta"]); ?>" pattern="[a-zA-Z]+[0-9]{3}@ikasle.ehu.eu?s" required hidden>
 	
 	<font face="arial">Galdera:  </font><input type="text" name="galdera" id="galdera" pattern=".{10,}" required><span id="galderaOker"></span><br><br>
 	
@@ -153,14 +153,47 @@ if(!$niremysqli->query($sql)){
 	echo "Errorea gertatu da!";
 	echo "<a href='../quizzes/addQuestion5.html'>Galdera berria egin.</a>";
 }
-echo "Erregistro bat gehitu da!";
-echo "<p><a href='erakutsiGalderak.php'>Erregistroak ikusi</a>";
+
 
 
 $niremysqli->close();
 	
-echo '<script language="javascript" type="text/javascript"> location.href="addQuestion.php?eposta='.$eposta.'"</script>';
-
 	
+	
+
+	/*
+	XML
+	*/
+try{
+//$galderakXML = new SimpleXMLElement('../xml/questions.xml', null, true);
+$galderakXML = simplexml_load_file("../xml/questions.xml");
+
+$assessmentItem = $galderakXML->addChild('assessmentItem');
+$assessmentItem->addAttribute('complexity', $zailtasuna);
+$assessmentItem->addAttribute('subject', $arloa);
+
+$itemBody = $assessmentItem->addChild('itemBody');
+$p = $itemBody -> addChild('p',$galdera);
+
+$correctResponse = $assessmentItem->addChild('correctResponse');
+$value = $correctResponse -> addChild('value',$zuzena);
+
+$incorrectResponses = $assessmentItem->addChild('incorrectResponses');
+$value1 = $incorrectResponses -> addChild('value',$okerra1);
+$value2 = $incorrectResponses -> addChild('value',$okerra2);
+$value3 = $incorrectResponses -> addChild('value',$okerra3);
+
+
+echo $galderakXML -> asXML("../xml/questions.xml");
+
+echo '<script language="javascript" type="text/javascript"> alert("XML fitxategian informazioa txertatua!"); </script>';
+ 
+
+}catch(Exception $e){
+	echo '<script language="javascript" type="text/javascript"> alert("Errorea XML fitxategiarekin"); </script>';
+}
+
+echo '<script language="javascript" type="text/javascript"> location.href="afterQuestion.php?eposta='.$eposta.'"</script>';
+
 }
 ?>

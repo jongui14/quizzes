@@ -27,6 +27,7 @@
 		<span><a href='php/addQuestion.php?eposta=<?php echo($_GET["eposta"]); ?>'>Add quiz</a></span>
 		<span><a href='php/erakutsiGalderak.php?eposta=<?php echo($_GET["eposta"]); ?>'>Erakutsi galderak</a></span>
 		<span><a href='php/showQuestionsWithImages.php?eposta=<?php echo($_GET["eposta"]); ?>'>Erakutsi galderak irudiekin</a></span>
+		<span><a href='php/showXMLQuestions.php?eposta=<?php echo($_GET["eposta"]); ?>'>Erakutsi galderak XML</a></span>
 		<span><a href='author/credits.php?eposta=<?php echo($_GET["eposta"]); ?>'>Credits</a></span>
 	</nav>
     <section class="main" id="s1">
