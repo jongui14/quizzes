@@ -159,5 +159,8 @@ echo "<p><a href='erakutsiGalderak.php'>Erregistroak ikusi</a>";
 
 $niremysqli->close();
 	
+echo '<script language="javascript" type="text/javascript"> location.href="addQuestion.php?eposta='.$eposta.'"</script>';
+
+	
 }
 ?>
