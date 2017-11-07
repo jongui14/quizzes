@@ -165,7 +165,6 @@ $niremysqli->close();
 	XML
 	*/
 try{
-//$galderakXML = new SimpleXMLElement('../xml/questions.xml', null, true);
 $galderakXML = simplexml_load_file("../xml/questionsTransAuto.xml");
 
 $assessmentItem = $galderakXML->addChild('assessmentItem');
@@ -183,8 +182,28 @@ $value1 = $incorrectResponses -> addChild('value1',$okerra1);
 $value2 = $incorrectResponses -> addChild('value2',$okerra2);
 $value3 = $incorrectResponses -> addChild('value3',$okerra3);
 
-
 echo $galderakXML -> asXML("../xml/questionsTransAuto.xml");
+
+
+$XML2 = new SimpleXMLElement('../xml/questions.xml', null, true);
+
+$assessmentItem = $XML2->addChild('assessmentItem');
+$assessmentItem->addAttribute('complexity', $zailtasuna);
+$assessmentItem->addAttribute('subject', $arloa);
+
+$itemBody = $assessmentItem->addChild('itemBody');
+$p = $itemBody -> addChild('p',$galdera);
+
+$correctResponse = $assessmentItem->addChild('correctResponse');
+$value = $correctResponse -> addChild('value',$zuzena);
+
+$incorrectResponses = $assessmentItem->addChild('incorrectResponses');
+$value1 = $incorrectResponses -> addChild('value',$okerra1);
+$value2 = $incorrectResponses -> addChild('value',$okerra2);
+$value3 = $incorrectResponses -> addChild('value',$okerra3);
+
+echo $XML2 -> asXML("../xml/questions.xml");
+
 
 echo '<script language="javascript" type="text/javascript"> alert("XML fitxategian informazioa txertatua!"); </script>';
  
