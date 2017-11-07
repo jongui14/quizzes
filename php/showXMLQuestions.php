@@ -22,6 +22,7 @@
 $xml = simplexml_load_file('../xml/questions.xml');
 ?>
 <table>
+	
   <thead>
     <tr>
       <th>Enuntziatua</th>
@@ -33,12 +34,13 @@ $xml = simplexml_load_file('../xml/questions.xml');
 
 <?php foreach ($xml->assessmentItem as $assessmentItem) :?>
     <tr>
-      <td><?php echo $assessmentItem->complexity; ?></td>
-      <td><?php echo $assessmentItem->complexity; ?></td>
-      <td><?php echo $assessmentItem->subject; ?></td>
+      <td><?php echo $assessmentItem->itemBody->p ?></td>
+      <td><?php echo $assessmentItem->attributes()->complexity ?></td>
+      <td><?php echo $assessmentItem->attributes()->subject ?></td>
     </tr>
 <?php endforeach; ?>
   </tbody>
+  
 </table>
 	
 

@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="showQuestions.xsl"?>
+<assessmentItems>
+	<assessmentItem complexity="3" subject="mikologia">
+		<itemBody> 
+			<p>Zein Amanita da jangarria?</p>
+		</itemBody>
+		<correctResponse>
+			<value>Caesarea</value>
+		</correctResponse>
+		<incorrectResponses>
+			<value1>Phalloides</value1>
+			<value2>Muscaria</value2>
+			<value3>Virosa</value3>
+		</incorrectResponses>
+	</assessmentItem>
+	<assessmentItem complexity="3" subject="mikologia">
+		<itemBody> 
+			<p>Tripakiek zer dute kapela azpian?</p>
+		</itemBody>
+		<correctResponse>
+			<value>Eztenak</value>
+		</correctResponse>
+		<incorrectResponses>
+			<value1>Filamenduak</value1>
+			<value2>Himenioa</value2>
+			<value3>Hodiak</value3>
+		</incorrectResponses>
+	</assessmentItem>
+	<assessmentItem complexity="5" subject="mikologia">
+		<itemBody>
+			<p>Eranztuna du</p>
+		</itemBody>
+		<correctResponse>
+			<value>Galanpernak</value>
+		</correctResponse>
+		<incorrectResponses>
+			<value1>Gibel urdinak</value1>
+			<value2>Esnegorriak</value2>
+			<value3>Errotariak</value3>
+		</incorrectResponses>
+	</assessmentItem>
+<assessmentItem complexity="1" subject="Proba"><itemBody><p>Probako galdera bat.</p></itemBody><correctResponse><value>Erantzun zuzena</value></correctResponse><incorrectResponses><value1>Erantzun okerra 1</value1><value2>Erantzun okerra 2</value2><value3>Erantzun okerra 3</value3></incorrectResponses></assessmentItem><assessmentItem complexity="4" subject="skskos"><itemBody><p>dkokkdosksos</p></itemBody><correctResponse><value>oksk</value></correctResponse><incorrectResponses><value1>sss</value1><value2>sk</value2><value3>oo</value3></incorrectResponses></assessmentItem><assessmentItem complexity="3" subject="k"><itemBody><p>koksoksoksoksok</p></itemBody><correctResponse><value>Erantzun zuzena</value></correctResponse><incorrectResponses><value1>osksoos</value1><value2>Erantzun okerra 2</value2><value3>oks</value3></incorrectResponses></assessmentItem><assessmentItem complexity="1" subject="Matematika"><itemBody><p>Zenbat da 1+1?</p></itemBody><correctResponse><value>2</value></correctResponse><incorrectResponses><value1>4</value1><value2>4</value2><value3>5</value3></incorrectResponses></assessmentItem></assessmentItems>

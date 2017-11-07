@@ -65,6 +65,38 @@ if(!$niremysqli->query($sql)){
 
 $niremysqli->close();
 
+	/*
+	XML
+	*/
+try{
+//$galderakXML = new SimpleXMLElement('../xml/questions.xml', null, true);
+$galderakXML = simplexml_load_file("../xml/questionsTransAuto.xml");
+
+$assessmentItem = $galderakXML->addChild('assessmentItem');
+$assessmentItem->addAttribute('complexity', $zailtasuna);
+$assessmentItem->addAttribute('subject', $arloa);
+
+$itemBody = $assessmentItem->addChild('itemBody');
+$p = $itemBody -> addChild('p',$galdera);
+
+$correctResponse = $assessmentItem->addChild('correctResponse');
+$value = $correctResponse -> addChild('value',$zuzena);
+
+$incorrectResponses = $assessmentItem->addChild('incorrectResponses');
+$value1 = $incorrectResponses -> addChild('value1',$okerra1);
+$value2 = $incorrectResponses -> addChild('value2',$okerra2);
+$value3 = $incorrectResponses -> addChild('value3',$okerra3);
+
+
+echo $galderakXML -> asXML("../xml/questionsTransAuto.xml");
+
+echo '<script language="javascript" type="text/javascript"> alert("XML fitxategian informazioa txertatua!"); </script>';
+ 
+
+}catch(Exception $e){
+	echo '<script language="javascript" type="text/javascript"> alert("Errorea XML fitxategiarekin"); </script>';
+}
+
 echo '<script language="javascript" type="text/javascript"> location.href="afterQuestion.php?eposta='.$eposta.'"</script>';
 
 
