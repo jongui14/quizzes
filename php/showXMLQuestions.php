@@ -1,6 +1,7 @@
 <html>
 <head></head>
 <body>
+<?php echo '<a href="layoutR.php?eposta='.$_GET['eposta'].'"> <img src="../img/atras.png" id="atzeraArgazkia" style="width: 40px;height: 40px;"></a><br>'; ?>
 <div align="right">
 	<img src="
 	<?php

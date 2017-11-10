@@ -93,6 +93,7 @@ if(isset($_POST['eposta'])){
 		echo ("Errorea gertatu da!");
 		echo ("<a href='./signUp.html'>Berriro saiatu.</a>");
 	}
+	
 	echo "Erabiltzaile bat gehitu da!";
 	echo "<p><a href='../layout.html'>Hasiera</a>";
 	echo "<p><a href='../php/singUp.php'>Beste erabiltzaile bat gehitu</a>";

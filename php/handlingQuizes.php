@@ -1,6 +1,13 @@
 <!DOCTYPE>
 <html>
   <head>
+  		<style type="text/css">
+			p{
+				margin: 10px;
+				color:#243447;
+				background-color:#8fa1ad;
+			}
+		</style>
         <meta charset="utf-8">
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		<script>
@@ -31,12 +38,52 @@
 		});
 		
 		</script>
+		<script type="text/javascript" language="JavaScript">
+		xhr = new XMLHttpRequest();
+		
+		var erakutsi=false,kopurua=false;
+		
+		
+		
+		xhr.onreadystatechange = function(){
+			if ((xhr.readyState==4)&&(xhr.status==200 ) && erakutsi){ 
+				{ document.getElementById("erakutsiGureGalderak").innerHTML= xhr.responseText;}
+				erakutsi=false;
+			}else if ((xhr.readyState==4)&&(xhr.status==200 ) && kopurua){ 
+				{ document.getElementById("galderaKopurua").innerHTML= xhr.responseText;}
+				erakutsi=false;
+			}else if ((xhr.readyState==4)&&(xhr.status==200 )){
+				var erantzuna=xhr.responseXML;
+				//var x = erantzuna.getE
+				document.getElementById("erabiltzaileKopurua").innerHTML= xhr.responseText;
+			}
+		}
+		
+		
+		function galderakErakutsi(){
+			erakutsi=true;
+			xhr.open("GET","showQuestionsAJAX.php?eposta=<?php echo($_GET["eposta"]); ?>", true);
+			xhr.send();
+		}
+		
+		
+		function galderaKopuruaEguneratu(){
+			galderaKopurua();
+			setInterval(galderaKopurua,2000);
+		}
+		function galderaKopurua(){
+			kopurua=true;
+			xhr.open("GET","galderaKopurua.php?eposta=<?php echo($_GET["eposta"]); ?>", true);
+			xhr.send();
+		}
+		
+		</script>
 
     <title>Galdera Gehitu</title>
 	<link rel='stylesheet' type='text/css' href='../stylesPWS/styleLab2.css' />
 
   </head>
-  <body>		
+  <body onload="galderaKopuruaEguneratu();erabiltzaileKopuruaLortu()">		
 	<a href="layoutR.php?eposta=<?php echo($_GET["eposta"]); ?>"> <img src="../img/atras.png" id="atzeraArgazkia" style="width: 40px;height: 40px;position: relative; top: 10px; left: 30px;"></a>
 	
 	<div align="right">
@@ -55,9 +102,32 @@
 	?>" id="profilekoArgazkia" style="width: 40px;height: 40px;position: relative; top: -15px;">
 	<br><?php echo($_GET["eposta"]); ?>
 	</div>
-
+	
+<table>
+<tr>
+<td>
+<center>
+	<div id="guztia">
+	<h4>EDITATZEN ARI DIREN ERABILTZAILE KOPURUA</h4>
+	<div id="erabiltzaileKopurua">
+	</div>
+	</div>
+</center>
+</td>
+<td>
+<center>
+	<div id="guztia">
+	<h4>GALDERA KOPURUA</h4>
+	<div id="galderaKopurua">
+	</div>
+	</div>
+</center>
+</td>
+</tr>
+<tr>
+<td>
   	<div id="guztia">
-	<h2>GALDERA GEHITU - HTML5</h2>
+	<h4>GALDERA GEHITU</h4>
 	<div id="galdetegia">
   	<form id="galderaSartu" name="galderaSartu" method="post" action="addQuestion.php" enctype="multipart/form-data">
 	
@@ -83,7 +153,22 @@
 	</form>
 	</div>
 	</div>
+</td>
+<td>
+	<div id="guztia">	
+	<h4 onclick="galderakErakutsi()">TXERTATUTAKO GALDERAK IKUSI</h4>
+	<div id="erakutsiGureGalderak">
+	</div>	
+	</div>
+</td>
+</tr>
+</table>	
 
+	
+
+	
+
+	
   </body>
 </html>
 

@@ -43,9 +43,25 @@ if(isset($_POST['eposta'])){
 		echo 'Oker';
 	}else{
 		if($pass == $lortutakoa->pasahitza){
-			echo '<script language="javascript" type="text/javascript">alert("Aurrera!"); location.href="../layoutR.php?eposta='.$erab.'"</script>';
+			
+			$kontagailua = simplexml_load_file("../xml/counter.xml");
+
+			//echo $kontagailua->kopurua.'\n';
+			$online = $kontagailua->kopurua;
+			$online = (int) $online;
+			$online += 1;
+			
+			echo '_'.$online;
+						
+			//$kopurua = $kontagailua->addChild('kopurua',$online);
+			
+			$kontagailua->kopurua=$online;//$online;
+
+			echo $kontagailua -> asXML("../xml/counter.xml");
+
+			echo '<script language="javascript" type="text/javascript">alert("Aurrera!"); location.href="layoutR.php?eposta='.$erab.'"</script>';
 			//echo "<script>alert('Aurrera!');</script>";
-			//header('Location: ../layoutR.php?eposta='.$erab);
+			//header('Location: layoutR.php?eposta='.$erab);
 		}else{
 			echo 'Oker';
 		}

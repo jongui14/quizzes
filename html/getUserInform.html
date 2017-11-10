@@ -1,0 +1,64 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+
+				$.get('../xml/erabiltzaileak.xml', function(d){
+					$('#boton2').click(function(){
+						$("#izena").val("");
+						$("#abizenak").val("");
+						$("#telefonoa").val("");
+						$('#eposta').val("");
+					});
+					var epostenZer = $(d).find('eposta');
+					var izenZer = $(d).find('izena');
+					var abizen1Zer = $(d).find('abizena1');
+					var abizen2Zer = $(d).find('abizena2');
+					var telefonoZer = $(d).find('telefonoa');
+					var zenb;
+					var badago=false;
+					$('#boton1').click(function(){
+						if($('#eposta').val()==""){
+							alert("Eposta hau ez dago UPV/EHUn erregistraturik. Sartu ezazu beste bat.");
+						}else{
+						for (var i=0; i< epostenZer.length; i++){
+							if($('#eposta').val()==epostenZer[i].childNodes[0].nodeValue){
+								badago=true;
+								zenb=i;
+							}
+						}
+						if(badago){
+							$("#izena").val(izenZer[zenb].childNodes[0].nodeValue);
+							$("#abizenak").val(abizen1Zer[zenb].childNodes[0].nodeValue + " " + abizen2Zer[zenb].childNodes[0].nodeValue);
+							$("#telefonoa").val(telefonoZer[zenb].childNodes[0].nodeValue);
+						}else{
+							alert("Eposta hau ez dago UPV/EHUn erregistraturik. Sartu ezazu beste bat.");
+						}
+						}
+					})
+					
+				})
+			});
+		</script>
+		<h1> XML fitxategi batetik lortutako eposten zerrenda ...</h1><br>
+		<a href='../layoutR.php?<?php echo($_GET["eposta"]);?>'> <img src="../img/atras.png" id="atzeraArgazkia" style="width: 40px;height: 40px;position: relative; top: 10px; left: 0px;"></a><br><br>
+		<title> Erabiltzaile informazioa </title>
+		<link rel='stylesheet' type='text/css' href='../stylesPWS/styleLab2.css' />
+	</head>
+	<body>
+		
+		<div id="main">
+		<form id="formularioa" name="formularioa" >
+		<br><br>
+		Eposta: <input id="eposta">
+		Izena: <input id="izena">
+		Abizenak: <input id="abizenak">
+		Telefono zenbakia: <input id="telefonoa"> <br><br>
+		<input id="boton1" class="botoia" type="button" value="Bilatu">	
+		<input id="boton2" class="botoia" type="button" value="Ezabatu">	
+		</div> 
+	</body>
+</html>

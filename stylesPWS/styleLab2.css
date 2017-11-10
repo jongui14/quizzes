@@ -3,12 +3,12 @@
 	background-color:#243447;
 	color:#ffffff;
 }
-h2,#boton1,#boton2{
+h2,h4,#boton1,#boton2{
 	color:#243447;
 	background-color:#8fa1ad;
 	
 }
-h2{
+h2,h4{
 	margin: 20px;
 }
 form{
@@ -16,7 +16,7 @@ form{
 	background-color:#243447;
 	color:#ffffff;
 }
-#eposta,#epostaOker,#galdera,#galderaOker,#erantzun1,#erantzun1Oker,#erantzun2,#erantzun2Oker,#erantzun3,#erantzun3Oker,#zailtasuna,#zailtasunaOker,#arloa,#arloaOker,#,#,#{
+#eposta,#epostaOker,#galdera,#galderaOker,#erantzun1,#erantzun1Oker,#erantzun2,#erantzun2Oker,#erantzun3,#erantzun3Oker,#zailtasuna,#zailtasunaOker,#arloa,#arloaOker{
 	color:#ffffff;
 }
 #guztia{
