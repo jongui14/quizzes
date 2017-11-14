@@ -1,0 +1,29 @@
+Lehendabizi, ikusi dut zure galdetegian ez duzula web-orriaren link-a eskatzen, beraz, badaezpada ere hemen lagako dizut. Gainera,
+
+2 hautazkoak dokumentu honetan azaltzen ditut, horrela dena toki berean edukiko duzu eta guk ere bai.
+
+Web orria: http://websistemakjongui.000webhostapp.com/lab5/layout.html
+
+
+1. hautazkoa:
+Ataza honetan, datu basean bilatu behar genuen momentu horretako erabiltzaileak zenbat galdera txertatu dituen.
+Funtzioa 20 segunduru errepikatuko da setInterval funtzioaren bidez.
+Orduan, 20 segunduro php-ko dei baten bidez, datu basean erabiltzaileak dituen galdera kopurua (Select * From Where eposta='$_GET['eposta'])-tik
+lortutako emaitzak, kontsulta globalarekin (Select * From questions) konparatuko ditugu. Ondoren, .php fitxategi honetatik echo baten bidez
+erantzuna itzuliko dugu, eta beste orriak erantzuna jasotzen duenean pantailaratuko du.
+Prozesu hau 20 segunduro errepikatuko da.
+
+
+2. hautazkoa:
+Kasu honetan, galderak txertatzen ari diren erabiltzaile kopurua kontrolatu behar genuen. Horretarako .xml fitxategi bat erabili dugu
+kontagailu bat izango balitz bezala. Ondoren AJAX erabiliz emaitza pantailaratzen genuen. Hori ez zen oso konplikatua.
+Baina, bi arazo handi ikusi ditugu, eta horien aurrean gure ustetan aukera egokiena aukeratu dugu.
+
+Alde batetik, erabiltzailea gehitzeko eta kentzeko unea. Erabiltzailea gehitzea, layoutR.php-ko textuaren gainean click egitean gertatuko da.
+Ez duguna lortu, bere esteka egitura mantentzea izan da. Baina, erabiltzaile kentzerako orduan arazo gehiago eduki ditugu. Sesioak erabiltzerik
+ez genuenez, erabaki dugu erabiltzaileak atzera botoia sakatzean kentzea. Ondorioz, atzera botoia eman gabe ixten baldin badu, ez
+du kontagailuan inongo eraginik edukiko.
+
+Baina arazo larriena eguneraketarekin eduki dugu. Ezin izan dugu .xml fitxategiaren gainean listener moduko ekintzarik jarri, beraz, nahiko
+arbitrarioa den setInterval funtzioa jarri dugu. 20 segunduko diferentzia jarri dugu, badaezpada ere webhost zerbitzariarengatik abisurik
+ez jasotzeko.
