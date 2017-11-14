@@ -12,33 +12,32 @@
 		   type='text/css' 
 		   media='only screen and (max-width: 480px)'
 		   href='../stylesPWS/smartphone.css' />
+		   
+
+		   
+		 <script type="text/javascript" language="JavaScript">
+			xhr0 = new XMLHttpRequest();
+			
+			xhr0.onreadystatechange = function(){
+			if ((xhr0.readyState==4)&&(xhr0.status==200 )){
+					location.href="handlingQuizes.php?eposta=<?php echo $_GET["eposta"]?>";
+				}
+			}
+			
+			function erabiltzaileaGehitu(){
+				xhr0.open("GET","erabiltzaileaGehitu.php");
+				xhr0.send();
+			}
+
+		</script>
   </head>
   <body>
   <div id='page-wrap'>
 	<header class='main' id='h1'>
       <!--<span class="right"><a href="./logIn.php">LogIn</a> </span>-->
 	  <!--<span class="right"><a href="./signUp.php">SingUp</a> </span>-->
-      <span class="right" ><a href="../layout.html" onClick="logout();alert('Saioa itxi duzu.')">LogOut</a> </span>
-	  <script>
-		function logout(){
-		<?php
-			$kontagailua = simplexml_load_file("../xml/counter.xml");
+      <span class="right" ><a href="../layout.html">LogOut</a> </span>
 
-			//echo $kontagailua->kopurua.'\n';
-			$online = $kontagailua->kopurua;
-			$online = (int) $online;
-			$online += -1;
-			
-			//echo $online;
-						
-			//$kopurua = $kontagailua->addChild('kopurua',$online);
-			
-			$kontagailua->kopurua=$online;//$online;
-
-			echo $kontagailua -> asXML("../xml/counter.xml");
-		?>
-		}
-	</script>
 	
 	<h2>Quiz: crazy questions</h2>
     </header>
@@ -46,7 +45,7 @@
 	
 		<span><a href='layoutR.php?eposta=<?php echo($_GET["eposta"]); ?>'>Home</a></span>
 		<!--<span><a href='addQuestion.php?eposta=<?php echo($_GET["eposta"]); ?>'>Add quiz</a></span>-->
-		<span><a href='handlingQuizes.php?eposta=<?php echo($_GET["eposta"]); ?>'>Galdera kudeaketa (AJAX)</a></span>
+		<span><p onclick="erabiltzaileaGehitu();">Galdera kudeaketa (AJAX)</p></span>
 		<!--<span><a href='erakutsiGalderak.php?eposta=<?php echo($_GET["eposta"]); ?>'>Erakutsi galderak</a></span>
 		<span><a href='showQuestionsWithImages.php?eposta=<?php echo($_GET["eposta"]); ?>'>Erakutsi galderak irudiekin</a></span>
 		<span><a href='showXMLQuestions.php?eposta=<?php echo($_GET["eposta"]); ?>'>Erakutsi galderak XML</a></span>

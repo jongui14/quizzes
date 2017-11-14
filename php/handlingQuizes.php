@@ -15,77 +15,147 @@
 			
 			$("input[type='reset']").on("click", function(event){
 				$('#irudiaPantallan').attr('src', "undefined");
+				$('#formularioaZuzena').html("");
+			});
 
-			});
-			$("input[type='submit']").on("click", function(event){
-				if(typeof ($('#irudiaPantallan').attr('src')) != "undefined"){
-					$('#galderaSartu').attr('action', 'addQuestionwithImage.php');
-				}
-			});
+		
 			
-			$('#igoIrudia').on('change', function(ev) {
-				var f = ev.target.files[0];
-				var fr = new FileReader();
-				
-				fr.onload = function(ev2) {
-					console.dir(ev2);
-					$('#irudiaPantallan').attr('src', ev2.target.result);
-				};
-				
-				fr.readAsDataURL(f);
+			$.get('../xml/counter.xml', function(d){
+				var kont = $(d).find('kopurua');
+				$(kont).on('change', function(ev) {
+					
+					erabiltzaileKopuruaLortu();
+
+				});
 			});
 			
 		});
-		
 		</script>
-		<script type="text/javascript" language="JavaScript">
+		
+
+		
+		<script type="text/javascript" language="JavaScript">//Galderak erakutsi
 		xhr = new XMLHttpRequest();
-		
-		var erakutsi=false,kopurua=false;
-		
 		
 		
 		xhr.onreadystatechange = function(){
-			if ((xhr.readyState==4)&&(xhr.status==200 ) && erakutsi){ 
+			if ((xhr.readyState==4)&&(xhr.status==200 )){ 
 				{ document.getElementById("erakutsiGureGalderak").innerHTML= xhr.responseText;}
 				erakutsi=false;
-			}else if ((xhr.readyState==4)&&(xhr.status==200 ) && kopurua){ 
-				{ document.getElementById("galderaKopurua").innerHTML= xhr.responseText;}
-				erakutsi=false;
-			}else if ((xhr.readyState==4)&&(xhr.status==200 )){
-				var erantzuna=xhr.responseXML;
-				//var x = erantzuna.getE
-				document.getElementById("erabiltzaileKopurua").innerHTML= xhr.responseText;
+			} 
+		}
+		
+		function galderakErakutsi(){
+			xhr.open("GET","showQuestionsAJAX.php?eposta=<?php echo($_GET["eposta"]); ?>", true);
+			xhr.send();
+		}
+
+				
+		</script>
+		
+		<script type="text/javascript" language="JavaScript">//Galderak ezkutatu
+
+		function galderakEzkutatu(){
+				document.getElementById("erakutsiGureGalderak").innerHTML= '<center><p onclick="galderakErakutsi()">Nire galderak ikusi<p></center>;'
+		}
+
+				
+		</script>
+		
+		<script type="text/javascript" language="JavaScript">//Galdera kopurua eguneratu
+		
+		xhr1 = new XMLHttpRequest();
+		xhr1.onreadystatechange = function(){
+		if ((xhr1.readyState==4)&&(xhr1.status==200 )){ 
+				 document.getElementById("galderaKopurua").innerHTML= xhr1.responseText;
 			}
 		}
 		
 		
-		function galderakErakutsi(){
-			erakutsi=true;
-			xhr.open("GET","showQuestionsAJAX.php?eposta=<?php echo($_GET["eposta"]); ?>", true);
-			xhr.send();
-		}
-		
 		
 		function galderaKopuruaEguneratu(){
 			galderaKopurua();
-			setInterval(galderaKopurua,2000);
+			setInterval(galderaKopurua,20000);
 		}
 		function galderaKopurua(){
 			kopurua=true;
-			xhr.open("GET","galderaKopurua.php?eposta=<?php echo($_GET["eposta"]); ?>", true);
-			xhr.send();
+			xhr1.open("GET","galderaKopurua.php?eposta=<?php echo($_GET["eposta"]); ?>", true);
+			xhr1.send();
+		}
+		</script>
+		
+		<script type="text/javascript" language="JavaScript">//Erabiltzaile kopurua lortu
+		
+		xhr2 = new XMLHttpRequest();
+		xhr2.onreadystatechange = function(){
+			if ((xhr2.readyState==4)&&(xhr2.status==200 )){				
+				var erantzuna=xhr2.responseXML;
+				document.getElementById("erabiltzaileKopurua").innerHTML="<p>" + erantzuna.getElementsByTagName('kopurua')[0].childNodes[0].nodeValue + "</p>";	
+			}
 		}
 		
+		function erabiltzaileKopuruaLortuEguneatu(){
+			erabiltzaileKopuruaLortu();
+			setInterval(erabiltzaileKopuruaLortu,20000);
+		}
+		function erabiltzaileKopuruaLortu(){
+			xhr2.open("GET","../xml/counter.xml", true);
+			xhr2.send();
+		}
+		</script>
+	
+		<script type="text/javascript" language="JavaScript">//Erabiltzailea kendu
+			xhr4 = new XMLHttpRequest();
+			
+			xhr4.onreadystatechange = function(){
+			if ((xhr4.readyState==4)&&(xhr4.status==200 )){		
+				location.href="layoutR.php?eposta=<?php echo($_GET["eposta"]); ?>";
+				}
+			}
+			
+			function erabiltzaileaKendu(){
+				xhr4.open("GET","erabiltzaileaKendu.php");
+				xhr4.send();
+			}
+
 		</script>
 
+		<script type="text/javascript" language="JavaScript">//Galderak berri bat txertatu
+		xhr5 = new XMLHttpRequest();
+		
+		
+		xhr5.onreadystatechange = function(){
+			if ((xhr5.readyState==4)&&(xhr5.status==200 )){ 
+				document.getElementById("formularioaZuzena").innerHTML= xhr5.responseText;
+			} 
+		}
+		
+		function galderaBerriaGehitu(){
+			var eposta= "<?php echo($_GET['eposta']) ?>";
+			var galdera= document.getElementById("galdera").value;
+			var zuzena= document.getElementById("erantzun1").value;
+			var okerra1= document.getElementById("erantzun2").value;
+			var okerra2= document.getElementById("erantzun3").value;
+			var okerra3= document.getElementById("erantzun4").value;
+			var zailtasuna= document.getElementById("zailtasuna").value;
+			var arloa= document.getElementById("arloa").value;	
+			xhr5.open("POST", "addQuestionAJAX.php" , true);
+			xhr5.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			xhr5.send("eposta="+encodeURIComponent(eposta)+"&galdera="+encodeURIComponent(galdera)+"&erantzun1="+encodeURIComponent(zuzena)+"&erantzun2="+encodeURIComponent(okerra1)+"&erantzun3="+encodeURIComponent(okerra2)+"&erantzun4="+encodeURIComponent(okerra3)+"&zailtasuna="+encodeURIComponent(zailtasuna)+"&arloa="+encodeURIComponent(arloa));
+
+		}
+
+				
+		</script>
+		
     <title>Galdera Gehitu</title>
 	<link rel='stylesheet' type='text/css' href='../stylesPWS/styleLab2.css' />
 
   </head>
-  <body onload="galderaKopuruaEguneratu();erabiltzaileKopuruaLortu()">		
-	<a href="layoutR.php?eposta=<?php echo($_GET["eposta"]); ?>"> <img src="../img/atras.png" id="atzeraArgazkia" style="width: 40px;height: 40px;position: relative; top: 10px; left: 30px;"></a>
+  <body onload="galderaKopuruaEguneratu();erabiltzaileKopuruaLortuEguneatu();">		
 	
+<a  ><img src="../img/atras.png" id="atzeraArgazkia" style="width: 40px;height: 40px;position: relative; top: 10px; left: 30px;" onclick="erabiltzaileaKendu();"></a>
+  
 	<div align="right">
 	<img src="
 	<?php
@@ -129,175 +199,40 @@
   	<div id="guztia">
 	<h4>GALDERA GEHITU</h4>
 	<div id="galdetegia">
-  	<form id="galderaSartu" name="galderaSartu" method="post" action="addQuestion.php" enctype="multipart/form-data">
+  	<form id="galderaSartu" method="post" enctype="multipart/form-data">
 	
-	<input type="email" name="eposta" id="eposta" placeholder="xxx001@ikasle.ehu.eus" value="<?php echo($_GET["eposta"]); ?>" pattern="[a-zA-Z]+[0-9]{3}@ikasle.ehu.eu?s" required hidden>
+	<input type="email" name="eposta" id="eposta" placeholder="xxx001@ikasle.ehu.eus" value="<?php echo($_GET["eposta"]); ?>" pattern="[a-zA-Z]+[0-9]{3}@ikasle.ehu.eu?s"  hidden>
 	
-	<font face="arial">Galdera:  </font><input type="text" name="galdera" id="galdera" pattern=".{10,}" required><span id="galderaOker"></span><br><br>
+	<font face="arial">Galdera:  </font><input type="text" name="galdera" id="galdera" pattern=".{10,}" ><span id="galderaOker"></span><br><br>
 	
-	<font face="arial">Erantzun zuzena:  </font><input type="text" name="erantzun1" id="erantzun1" required><br><br>
-	<font face="arial">Erantzun okerra:  </font><input type="text" name="erantzun2" id="erantzun2" required><br><br>
-	<font face="arial">Erantzun okerra:  </font><input type="text" name="erantzun3" id="erantzun3" required><br><br>
-	<font face="arial">Erantzun okerra:  </font><input type="text" name="erantzun4" id="erantzun4" required><br><br>
+	<font face="arial">Erantzun zuzena:  </font><input type="text" name="erantzun1" id="erantzun1" ><br><br>
+	<font face="arial">Erantzun okerra:  </font><input type="text" name="erantzun2" id="erantzun2" ><br><br>
+	<font face="arial">Erantzun okerra:  </font><input type="text" name="erantzun3" id="erantzun3" ><br><br>
+	<font face="arial">Erantzun okerra:  </font><input type="text" name="erantzun4" id="erantzun4" ><br><br>
 
-	<font face="arial">Galderaren zailtasuna (1-5): </font><input type="number" name="zailtasuna" id="zailtasuna" min="1" max="5" required><br><br>
-	<font face="arial">Galderaren gai-arloa: </font><input type="text" name="arloa" id="arloa" required><br><br>
+	<font face="arial">Galderaren zailtasuna (1-5): </font><input type="number" name="zailtasuna" id="zailtasuna" min="1" max="5" ><br><br>
+	<font face="arial">Galderaren gai-arloa: </font><input type="text" name="arloa" id="arloa" ><br><br>
 	
-	<font face="arial">Gehitu irudia:</font><input id="igoIrudia" name="igoIrudia" type="file" accept="image/*"><span id="argazkiaOker"></span><br><br>
 	
-	<img id="irudiaPantallan"/><br>
-	
-	<input id="boton1" class="botoia" type="submit" value="Galdera bidali">
+	<input id="boton1" class="botoia" type="button" value="Galdera bidali" onclick="galderaBerriaGehitu();">
 	<input id="boton2" class="botoia" type="reset" value="Garbitu">
 	
 	</form>
 	</div>
 	</div>
+	<div id="formularioaZuzena">
+	</div>
 </td>
 <td>
 	<div id="guztia">	
-	<h4 onclick="galderakErakutsi()">TXERTATUTAKO GALDERAK IKUSI</h4>
-	<div id="erakutsiGureGalderak">
+	<h4 >TXERTATUTAKO GALDERAK</h4>
+	<div id="erakutsiGureGalderak" >
+	<center><p onclick="galderakErakutsi()">Nire galderak ikusi<p></center>
 	</div>	
 	</div>
 </td>
 </tr>
 </table>	
 
-	
-
-	
-
-	
   </body>
 </html>
-
-<?php 
-
-
-if(isset($_POST['eposta'])){
-
-include 'configEzarri.php';
-
-$eposta = trim($_POST['eposta']);
-$galdera= trim($_POST['galdera']);
-$zuzena= trim($_POST['erantzun1']);
-$okerra1= trim($_POST['erantzun2']);
-$okerra2= trim($_POST['erantzun3']);
-$okerra3= trim($_POST['erantzun4']);
-$zailtasuna= trim($_POST['zailtasuna']);
-$arloa= trim($_POST['arloa']);
-
-if(!preg_match("^[a-zA-Z][0-9]{3}@ikasle\.ehu\.eu?s^", $eposta)){
-	echo "		Eposta gaizki jarri duzu.";
-	echo "<a href='../quizzes/addQuestion5.html'>Berriz betetzeko.</a>";
-	exit(1);
-}
-if(!preg_match("^.{10,}^", $galdera)){
-	echo "		Galderaren luzera ez da zuzena.";
-	echo "<a href='../quizzes/addQuestion5.html'>Berriz betetzeko.</a>";
-	exit(1);
-}
-if(strlen($zuzena)==0){
-	echo "		Erantzun zuzenean zerbait idatzi behar da.";
-	echo "<a href='../quizzes/addQuestion5.html'>Berriz betetzeko.</a>";
-	exit(1);
-}
-if(strlen($okerra1)==0){
-	echo "		Erantzun zuzenean zerbait idatzi behar da.";
-	echo "<a href='../quizzes/addQuestion5.html'>Berriz betetzeko.</a>";
-	exit(1);
-}
-if(strlen($okerra2)==0){
-	echo "		Erantzun oker guztietan zerbait idatzi behar da.";
-	echo "<a href='../quizzes/addQuestion5.html'>Berriz betetzeko.</a>";
-	exit(1);
-}
-if(strlen($okerra3)==0){
-	echo "		Erantzun oker guztietan zerbait idatzi behar da.";
-	echo "<a href='../quizzes/addQuestion5.html'>Berriz betetzeko.</a>";
-	exit(1);
-}
-if(strlen($arloa)==0){
-	echo "		Arloan zerbait idatzi behar da.";
-	echo "<a href='../quizzes/addQuestion5.html'>Berriz betetzeko.</a>";
-	exit(1);
-}
-if(!preg_match("^[1-5]{1}^", $zailtasuna)){
-	echo "		Zailtasuna ez da zuzena.";
-	echo "<a href='../quizzes/addQuestion5.html'>Berriz betetzeko.</a>";
-	exit(1);
-}
-
-$sql = "INSERT INTO questions(eposta,galdera,zuzena,okerra1,okerra2,okerra3,zailtasuna,arloa,irudia)
-		VALUES('$_POST[eposta]','$_POST[galdera]','$_POST[erantzun1]','$_POST[erantzun2]','$_POST[erantzun3]','$_POST[erantzun4]','$_POST[zailtasuna]','$_POST[arloa]','0')";
-
-		
-if(!$niremysqli->query($sql)){
-	die('Errorea: ' . $niremysqli->error);
-	echo "Errorea gertatu da!";
-	echo "<a href='../quizzes/addQuestion5.html'>Galdera berria egin.</a>";
-}
-
-
-
-$niremysqli->close();
-	
-	
-	
-
-	/*
-	XML
-	*/
-try{
-$galderakXML = simplexml_load_file("../xml/questionsTransAuto.xml");
-
-$assessmentItem = $galderakXML->addChild('assessmentItem');
-$assessmentItem->addAttribute('complexity', $zailtasuna);
-$assessmentItem->addAttribute('subject', $arloa);
-
-$itemBody = $assessmentItem->addChild('itemBody');
-$p = $itemBody -> addChild('p',$galdera);
-
-$correctResponse = $assessmentItem->addChild('correctResponse');
-$value = $correctResponse -> addChild('value',$zuzena);
-
-$incorrectResponses = $assessmentItem->addChild('incorrectResponses');
-$value1 = $incorrectResponses -> addChild('value1',$okerra1);
-$value2 = $incorrectResponses -> addChild('value2',$okerra2);
-$value3 = $incorrectResponses -> addChild('value3',$okerra3);
-
-echo $galderakXML -> asXML("../xml/questionsTransAuto.xml");
-
-
-$XML2 = new SimpleXMLElement('../xml/questions.xml', null, true);
-
-$assessmentItem = $XML2->addChild('assessmentItem');
-$assessmentItem->addAttribute('complexity', $zailtasuna);
-$assessmentItem->addAttribute('subject', $arloa);
-
-$itemBody = $assessmentItem->addChild('itemBody');
-$p = $itemBody -> addChild('p',$galdera);
-
-$correctResponse = $assessmentItem->addChild('correctResponse');
-$value = $correctResponse -> addChild('value',$zuzena);
-
-$incorrectResponses = $assessmentItem->addChild('incorrectResponses');
-$value1 = $incorrectResponses -> addChild('value',$okerra1);
-$value2 = $incorrectResponses -> addChild('value',$okerra2);
-$value3 = $incorrectResponses -> addChild('value',$okerra3);
-
-echo $XML2 -> asXML("../xml/questions.xml");
-
-
-echo '<script language="javascript" type="text/javascript"> alert("XML fitxategian informazioa txertatua!"); </script>';
- 
-
-}catch(Exception $e){
-	echo '<script language="javascript" type="text/javascript"> alert("Errorea XML fitxategiarekin"); </script>';
-}
-
-echo '<script language="javascript" type="text/javascript"> location.href="afterQuestion.php?eposta='.$eposta.'"</script>';
-
-}
-?>
