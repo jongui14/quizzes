@@ -5,7 +5,7 @@ require_once('../lib/nusoap.php');
 require_once('../lib/class.wsdlcache.php');
 
 //HEMEN AZPIKO LINK HAU ALDATU BEHAR DEZU
-$soapclient = new nusoap_client('http://localhost/lab/lab6/php/getQuestionWZ.php?wsdl');
+$soapclient = new nusoap_client('https://websistemakjongui.000webhostapp.com/lab6/php/getQuestionWZ.php?wsdl');
 
 
 

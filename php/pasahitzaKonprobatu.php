@@ -4,7 +4,7 @@
 require_once('../lib/nusoap.php');
 require_once('../lib/class.wsdlcache.php');
 
-$soapclient = new nusoap_client('http://localhost/lab/lab6/php/egiaztatuPasahitza.php');
+$soapclient = new nusoap_client('https://websistemakjongui.000webhostapp.com/lab6/php/egiaztatuPasahitza.php?wsdl');
 
 
 

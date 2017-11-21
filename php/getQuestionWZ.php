@@ -6,7 +6,7 @@
 			
     $server = new nusoap_server();
 	//HEMEN AZPIKO LINK HAU BAITA ALDATU BEHAR DEZU (HAU HODEIEK ETA HOLA ZEUKEAN BAINO LEHEN ZEUKEZUN MODUA BAITA USTET FUNTZIONAU BEHARKO ZOLA configureWSDL eta hoi...)
-    $ns="http://localhost/lab/lab6/php/getQuestion.php?wsdl";
+    $ns="https://websistemakjongui.000webhostapp.com/lab6/php/getQuestion.php?wsdl";
 	$server->configureWSDL('getQuestion', $ns);
 	$server->wsdl->schemaTargetNamespace = $ns;
 	

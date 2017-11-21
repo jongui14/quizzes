@@ -13,23 +13,7 @@
 		   media='only screen and (max-width: 480px)'
 		   href='../stylesPWS/smartphone.css' />
 		   
-		   
-		<script type="text/javascript" language="JavaScript">//Geolokalizazioa lortu
-		xhr = new XMLHttpRequest();
-				
-		xhr.onreadystatechange = function(){
-			if ((xhr.readyState==4)&&(xhr.status==200 )){
-					document.getElementById("geoId").innerHTML=xhr.responseText;
-			} 
-		}
-		
-		function geolokalizazioaLortu(){
-			xhr.open("GET","geolokalizazioaLortu.php", true);
-			xhr.send();
-		}
-		
-		</script>
-		
+		  
 		
 		
 		 <style>
