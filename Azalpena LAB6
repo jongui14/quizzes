@@ -1,0 +1,29 @@
+1. Hautazkoa
+Sortu den mota konplexua zein izan den eta nola itzultzen den azalduko dut, adibideak erabiliz.
+
+Hasteko, erabiltzaileari galderaren identifikadorea eskatzen zaio. Honek bilatzeko botoiari emandakoan zerbitzu bat garatuko da. 
+Bezeroa new nusoap_client bidez getQuestionWZ web zerbitzuarekin konektatuko da, bertan getQuestion funtzioa definituta egongo delarik. 
+Honek, web zerbitzuko funtzioari deituko dio soapclient baten bidez, honekin batera galderaren indizea bidaliz. 
+Erantzuna jasotakoan pantailaratu egingo du jasotako erantzuna.
+Web zerbitzuan, hasteko zerbitzariko erregistroan funtzioa definituko da sarrera eta irteerak zein izango diren adieraziz. 
+Gero, funtzioa inplementatuko da datu basean eskaera bat eginez, id hori duten galderak lortu. 
+Fila kopurua 0 bada, identifikadore hori duen galderarik ez dagoela adieraziko du, hortaz galderaren testu eta erantzun hutsak, 
+eta 0 zailtasuna itzuliko ditu funtzioak. Bestela, identifikadoreak adierazitako galdera, erantzun zuzena eta zailtasuna bueltatuko ditu.
+
+
+2. Hautazkoa
+Zein/tzuk zerbitzu erabili d)ir)en azalduko da, bezeroak nola egin diren eta, 
+JSON erabili bada, orduan zerbitzuak itzultzen duenaren adibide bat
+
+Ataza honetan gehien kostatu zaiguna dokumentazio egokia topatzea izan da. Hasiera batean mapa bat txertazeko asmoa genuen baina horrek
+arazo gehiegi ematen zigun.
+Orduan, Google-ek eskaintzen zuen JSON bat aurkitu genuen. JSON-aren topaketa link honetan dago.
+http://maps.google.com/maps/api/geocode/json?
+Parametro bezala zeoze sartzea eskatzen zigun, beraz bezeroak zeoze sartu behar zuen. 
+Horretarako bezeroaren aldean, koordenatuak lortu behar genituen, horretarako navigator claseak inplementatua duen 
+geolocation.getCurretPosition(..)
+funtzioa erabili dugu. Ondoren, GET bidez parametroak pasatzen dizkiogu JSON-ari, jasotzen duguna dekodetu, eta honek datuak itzultzen 
+dizkigu array bat bezala.
+Ondoren nahi ditugun datuak aukeratzen ditugu eta hauek pantailaratu.
+Bezeroak geolokalizazioaLortu.php-ri aldagiak GET bidez pasatzen dizkio, eta honek ondoren html-kode osatua itzultzen du.
+JSON-ak esan dugun bezala, dekodetu ondoren array bat itzultzen digu eta guk bertatik datuak interpretazen ditugu.
