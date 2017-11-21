@@ -46,6 +46,7 @@
 		<span><a href='layoutR.php?eposta=<?php echo($_GET["eposta"]); ?>'>Home</a></span>
 		<!--<span><a href='addQuestion.php?eposta=<?php echo($_GET["eposta"]); ?>'>Add quiz</a></span>-->
 		<span><p onclick="erabiltzaileaGehitu();">Galdera kudeaketa (AJAX)</p></span>
+		<span><a href='getQuestionI.php?eposta=<?php echo($_GET["eposta"]); ?>'>Galdera Lortu (Lab 6 h1)</a></span>
 		<!--<span><a href='erakutsiGalderak.php?eposta=<?php echo($_GET["eposta"]); ?>'>Erakutsi galderak</a></span>
 		<span><a href='showQuestionsWithImages.php?eposta=<?php echo($_GET["eposta"]); ?>'>Erakutsi galderak irudiekin</a></span>
 		<span><a href='showXMLQuestions.php?eposta=<?php echo($_GET["eposta"]); ?>'>Erakutsi galderak XML</a></span>

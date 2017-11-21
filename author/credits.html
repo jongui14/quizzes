@@ -12,7 +12,79 @@
 		   type='text/css' 
 		   media='only screen and (max-width: 480px)'
 		   href='../stylesPWS/smartphone.css' />
-	</head>
+		   
+		   
+		<script type="text/javascript" language="JavaScript">//Geolokalizazioa lortu
+		xhr = new XMLHttpRequest();
+				
+		xhr.onreadystatechange = function(){
+			if ((xhr.readyState==4)&&(xhr.status==200 )){
+					document.getElementById("geoId").innerHTML=xhr.responseText;
+			} 
+		}
+		
+		function geolokalizazioaLortu(){
+			xhr.open("GET","geolokalizazioaLortu.php", true);
+			xhr.send();
+		}
+		
+		</script>
+		
+		
+		
+		 <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+	
+    <script>
+	function geoFindMe() {
+	  var output = document.getElementById("geoId");
+
+	  if (!navigator.geolocation){
+		output.innerHTML = "<p>Zure nabigatzaileak ez du geolokalizazioa onartzen!</p>";
+		return;
+	  }
+
+	  function success(position) {
+		var latitudea  = position.coords.latitude;
+		var longitud = position.coords.longitude;
+
+		xhr.open("GET","../php/geolokalizazioaLortu.php?latitudea="+latitudea+"&longitud="+longitud, true);
+		xhr.send();
+			
+	  };
+
+	  function error() {
+		output.innerHTML = "Ezin izan dugu lokalazazioa lortu!";
+	  };
+
+	  output.innerHTML = "<p>Bilatzen...</p>";
+
+	  navigator.geolocation.getCurrentPosition(success, error);
+	  
+	  
+	  xhr = new XMLHttpRequest();
+		
+		
+	xhr.onreadystatechange = function(){
+		if ((xhr.readyState==4)&&(xhr.status==200 )){ 
+			document.getElementById("geoId").innerHTML=xhr.responseText;
+		} 
+	}
+
+	}
+    </script>
+
 	<style>
 		table, td, th {    
 			border: 2px solid #ddd;
@@ -33,7 +105,8 @@
 			left: -300px;
 		}
 	</style>
-	<body>
+		</head>
+	<body onload="geoFindMe()">
 	<center>
 		<h1> Credits </h1>
 		<br><br>
@@ -62,6 +135,9 @@
 				<td> amadinabeitia001@ikasle.ehu.eus </td>
 			</tr>
 		</table>
+		<br><br><br>
+		<div id="geoId">
+		</div>
 	</center>
 		<a href="../layout.html"> <img src="../img/atras.png" id="atzeraArgazkia" style="width: 40px;height: 40px;position: relative; top: 10px; left: 30px;"></a>
 	</body>
