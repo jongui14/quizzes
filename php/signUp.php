@@ -106,7 +106,7 @@
 
   </head>
   <body>		
-	<a href="../layout.html"> <img src="../img/atras.png" id="atzeraArgazkia" style="width: 40px;height: 40px;position: relative; top: 10px; left: 30px;"></a>
+	<a href="./layoutR.php"> <img src="../img/atras.png" id="atzeraArgazkia" style="width: 40px;height: 40px;position: relative; top: 10px; left: 30px;"></a>
 
   	<div id="guztia">
 	<h2>ERABILTZAILEA GEHITU - HTML5</h2>
@@ -150,9 +150,12 @@ if(isset($_POST['eposta'])){
 	$deitura= trim($_POST['deitura']);
 	$nick= trim($_POST['nick']);
 	$pasahitza= trim($_POST['pasahitza1']);
+		
+	$kodea='websistemak';
+	$pass=crypt($pasahitza,$kodea);
 
 	$sql = "INSERT INTO users(eposta,deitura,nick,pasahitza,argazkia)
-		VALUES('$_POST[eposta]','$_POST[deitura]','$_POST[nick]','$_POST[pasahitza1]','0')";
+		VALUES('$_POST[eposta]','$_POST[deitura]','$_POST[nick]','$pass','0')";
 
 		
 	if(!$niremysqli->query($sql)){
@@ -162,8 +165,8 @@ if(isset($_POST['eposta'])){
 	}
 	
 	echo "Erabiltzaile bat gehitu da!";
-	echo "<p><a href='../layout.html'>Hasiera</a>";
-	echo "<p><a href='../php/singUp.php'>Beste erabiltzaile bat gehitu</a>";
+	echo "<p><a href='./layoutR.php'>Hasiera</a>";
+	echo "<p><a href='./signUp.php'>Beste erabiltzaile bat gehitu</a>";
 
 	$niremysqli->close();	
 }

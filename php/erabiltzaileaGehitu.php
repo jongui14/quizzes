@@ -8,7 +8,7 @@ $online++;
 $kontagailua->kopurua[0]=$online;
 			
 			
-echo $kontagailua -> asXML("../xml/counter.xml");
+$kontagailua -> asXML("../xml/counter.xml");
 			
 						
 //echo '<script language="javascript" type="text/javascript">location.href="handlingQuizes.php?eposta='.$_GET["eposta"].' "</script>';

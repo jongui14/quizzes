@@ -23,7 +23,7 @@
 	<link rel='stylesheet' type='text/css' href='../stylesPWS/styleLab2.css' />
 </head>
 <body>
-<a href="layoutR.php?eposta=<?php echo($_GET["eposta"]); ?>"> <img src="../img/atras.png" id="atzeraArgazkia" style="width: 40px;height: 40px;"></a><br><br>
+<a href="layoutR.php"> <img src="../img/atras.png" id="atzeraArgazkia" style="width: 40px;height: 40px;"></a><br><br>
 <center>
 <h2> Galdera bilaketa </h2>
 Idatzi nahi bilatu nahi duzun galderaren indize zenbakia:<input type='text' id='indizea' placeHolder="Idatzi indizea">

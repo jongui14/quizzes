@@ -1,3 +1,15 @@
+<?php 
+session_start (); 
+
+$mota = $_SESSION['erabiltzailea'];
+
+if($mota!='ikaslea'){
+	echo '<script language="javascript" type="text/javascript">alert("Erabiltzaile mota desegokia!"); location.href="./layoutR.php"</script>';
+}
+
+?>
+
+
 <!DOCTYPE>
 <html>
   <head>
@@ -46,7 +58,7 @@
 		}
 		
 		function galderakErakutsi(){
-			xhr.open("GET","showQuestionsAJAX.php?eposta=<?php echo($_GET["eposta"]); ?>", true);
+			xhr.open("GET","showQuestionsAJAX.php?eposta=<?php echo($_SESSION['eposta']); ?>", true);
 			xhr.send();
 		}
 
@@ -79,7 +91,7 @@
 		}
 		function galderaKopurua(){
 			kopurua=true;
-			xhr1.open("GET","galderaKopurua.php?eposta=<?php echo($_GET["eposta"]); ?>", true);
+			xhr1.open("GET","galderaKopurua.php?eposta=<?php echo($_SESSION['eposta']); ?>", true);
 			xhr1.send();
 		}
 		</script>
@@ -96,7 +108,7 @@
 		
 		function erabiltzaileKopuruaLortuEguneatu(){
 			erabiltzaileKopuruaLortu();
-			setInterval(erabiltzaileKopuruaLortu,20000);
+			setInterval(erabiltzaileKopuruaLortu,2000);
 		}
 		function erabiltzaileKopuruaLortu(){
 			xhr2.open("GET","../xml/counter.xml", true);
@@ -104,21 +116,7 @@
 		}
 		</script>
 	
-		<script type="text/javascript" language="JavaScript">//Erabiltzailea kendu
-			xhr4 = new XMLHttpRequest();
-			
-			xhr4.onreadystatechange = function(){
-			if ((xhr4.readyState==4)&&(xhr4.status==200 )){		
-				location.href="layoutR.php?eposta=<?php echo($_GET["eposta"]); ?>";
-				}
-			}
-			
-			function erabiltzaileaKendu(){
-				xhr4.open("GET","erabiltzaileaKendu.php");
-				xhr4.send();
-			}
 
-		</script>
 
 		<script type="text/javascript" language="JavaScript">//Galderak berri bat txertatu
 		xhr5 = new XMLHttpRequest();
@@ -131,7 +129,7 @@
 		}
 		
 		function galderaBerriaGehitu(){
-			var eposta= "<?php echo($_GET['eposta']) ?>";
+			var eposta= "<?php echo($_SESSION['eposta']) ?>";
 			var galdera= document.getElementById("galdera").value;
 			var zuzena= document.getElementById("erantzun1").value;
 			var okerra1= document.getElementById("erantzun2").value;
@@ -148,19 +146,36 @@
 				
 		</script>
 		
+		
+		<script type="text/javascript" language="JavaScript">//Erabiltzailea kendu
+			xhr4 = new XMLHttpRequest();
+			
+			xhr4.onreadystatechange = function(){
+			if ((xhr4.readyState==4)&&(xhr4.status==200 )){		
+					location.href="./layoutR.php";
+				}
+			}
+			
+			function erabiltzaileaKendu(){
+				xhr4.open("GET","erabiltzaileaKendu.php",true);
+				xhr4.send();
+			}
+
+		</script>
+		
     <title>Galdera Gehitu</title>
 	<link rel='stylesheet' type='text/css' href='../stylesPWS/styleLab2.css' />
 
   </head>
-  <body onload="galderaKopuruaEguneratu();erabiltzaileKopuruaLortuEguneatu();">		
+  <body onload="erabiltzaileKopuruaLortuEguneatu();galderaKopuruaEguneratu();">		
 	
-<a  ><img src="../img/atras.png" id="atzeraArgazkia" style="width: 40px;height: 40px;position: relative; top: 10px; left: 30px;" onclick="erabiltzaileaKendu();"></a>
+<a href='layoutR.php'><img src="../img/home.png" id="atzeraArgazkia" style="width: 40px;height: 40px;position: relative; top: 10px; left: 30px;" ></a>
   
 	<div align="right">
 	<img src="
 	<?php
 	include 'configEzarri.php';
-	$erab=$_GET["eposta"];
+	$erab=$_SESSION['eposta'];
 	$ema=$niremysqli->query("select * from users where eposta='$erab'");
 	$row=$ema->fetch_object();
 	$hutsa=$row->argazkia;
@@ -170,7 +185,8 @@
 		echo 'data:image/jpeg;base64,'.base64_encode( $row->argazkia );
 	}
 	?>" id="profilekoArgazkia" style="width: 40px;height: 40px;position: relative; top: -15px;">
-	<br><?php echo($_GET["eposta"]); ?>
+	<br><?php echo($_SESSION['eposta']); ?><br>
+		<input id="boton1" class="botoia" type="button" onclick="erabiltzaileaKendu();" value="LogOut">
 	</div>
 	
 <table>
@@ -201,7 +217,7 @@
 	<div id="galdetegia">
   	<form id="galderaSartu" method="post" enctype="multipart/form-data">
 	
-	<input type="email" name="eposta" id="eposta" placeholder="xxx001@ikasle.ehu.eus" value="<?php echo($_GET["eposta"]); ?>" pattern="[a-zA-Z]+[0-9]{3}@ikasle.ehu.eu?s"  hidden>
+	<input type="email" name="eposta" id="eposta" placeholder="xxx001@ikasle.ehu.eus" value="<?php echo($_SESSION['eposta']); ?>" pattern="[a-zA-Z]+[0-9]{3}@ikasle.ehu.eu?s"  hidden>
 	
 	<font face="arial">Galdera:  </font><input type="text" name="galdera" id="galdera" pattern=".{10,}" ><span id="galderaOker"></span><br><br>
 	
@@ -236,3 +252,4 @@
 
   </body>
 </html>
+
